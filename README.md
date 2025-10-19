@@ -1,8 +1,6 @@
 # test-the-bradery
 
-Lien de la boutique : https://admin.shopify.com/store/test-the-bradery  
-
-Lien du produit en question : https://test-the-bradery.myshopify.com/products/test-product  
+Lien du site + le produit en question : https://test-the-bradery.myshopify.com/products/test-product  
 
 Thème utilisé : Dawn  
 
@@ -15,7 +13,7 @@ Fonctionnalité déjà existante : changement d'image lors de changement de vari
 
 Fonctionnalité intégré : changement de variant lors de changement d'image sélectionné (si une variant est associé à l'image, sinon aucun changement)  
 
-Les fichiers modifié pour intégrer le comportement demandé (à vérifier dans le dernier commit) :  
+Les fichiers modifié pour intégrer le comportement demandé :  
 - assets/media-gallery.js  
 - snippets/product-media-gallery.liquid  
 - snippets/product-variant-picker.liquid  
