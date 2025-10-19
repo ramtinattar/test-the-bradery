@@ -1,1 +1,21 @@
 # test-the-bradery
+
+Lien de la boutique : https://admin.shopify.com/store/test-the-bradery
+Lien du produit en question : https://test-the-bradery.myshopify.com/products/test-product
+
+Thème utilisé : Dawn
+
+Quelques précisions :
+1 - Produit contient 8 variants => 4 options de tailles + 2 options de couleurs
+2 - Chaque variant a une image associé
+3 - Il existe 3 images supplémentaires qui ne sont lié à aucune variant
+
+Fonctionnalité déjà existante : changement d'image lors de changement de variant sélectionné
+Fonctionnalité intégré : changement de variant lors de changement d'image sélectionné (si une variant est associé à l'image, sinon aucun changement)
+
+Les fichiers modifié pour intégrer le comportement demandé (à vérifier dans le dernier commit) :
+- assets/media-gallery.js
+- snippets/product-media-gallery.liquid
+- snippets/product-variant-picker.liquid
+
+N'hesitez pas si vous avez des questions :)
