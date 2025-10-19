@@ -7,7 +7,8 @@ Thème utilisé : Dawn
 Quelques précisions :  
 - Produit contient 8 variants => 4 options de tailles + 2 options de couleurs  
 - Chaque variant a une image associé  
-- Il existe 3 images supplémentaires qui ne sont lié à aucune variant  
+- Il existe 3 images supplémentaires qui ne sont lié à aucune variant
+- Il existait un comportement natif qui mettait le slide sélectionné en première place après chaque changement, j'ai supprimé ce comportement pour avoir une expérience plus fluide
 
 Fonctionnalité déjà existante : changement d'image lors de changement de variant sélectionné
 
