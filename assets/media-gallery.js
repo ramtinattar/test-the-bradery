@@ -25,7 +25,11 @@ if (!customElements.get('media-gallery')) {
         const thumbnail = this.elements.thumbnails.querySelector(
           `[data-target="${event.detail.currentElement.dataset.mediaId}"]`
         );
+        const thumbnailVariantId = thumbnail.getAttribute('data-variant-id');
         this.setActiveThumbnail(thumbnail);
+
+
+        this.changeVariant(thumbnailVariantId);
       }
 
       setActiveMedia(mediaId, prepend) {
@@ -66,8 +70,38 @@ if (!customElements.get('media-gallery')) {
 
         if (!this.elements.thumbnails) return;
         const activeThumbnail = this.elements.thumbnails.querySelector(`[data-target="${mediaId}"]`);
+        const thumbnailVariantId = activeThumbnail.getAttribute('data-variant-id');
         this.setActiveThumbnail(activeThumbnail);
         this.announceLiveRegion(activeMedia, activeThumbnail.dataset.mediaPosition);
+
+        this.changeVariant(thumbnailVariantId);
+      }
+      
+      changeVariant(VariantId) {
+        if (!VariantId) return;
+
+        if (this.variantHasChanged) return;
+        this.variantHasChanged = true;
+
+        const variantList = JSON.parse(document.querySelector('[data-variants-list]').innerHTML);
+
+        for (const variant of variantList) {
+          if (variant.id.toString() === VariantId.toString()) {
+
+            for (const option of variant.options) {
+
+              const optionValue = option.optionId;
+              const optionInput = document.querySelector(`variant-selects input[data-option-value-id="${optionValue}"]`);
+              
+              if (optionInput) {
+                if (optionInput.checked) continue;
+                optionInput.checked = true;
+                optionInput.dispatchEvent(new Event('change', { bubbles: true }));
+              }
+            }
+          }
+        }
+        this.variantHasChanged = false;
       }
 
       setActiveThumbnail(thumbnail) {

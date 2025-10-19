@@ -90,5 +90,23 @@
     <script type="application/json" data-selected-variant>
       {{ product.selected_or_first_available_variant | json }}
     </script>
+
+    <script type="application/json" data-variants-list>
+      [
+        {% for variant in product.variants %}
+          {
+            "id": {{ variant.id }},
+            "options": [
+            {% for option in variant.options %}
+              {
+                "optionName": "{{ option | escape }}",
+                "optionId": {{ option.id }}
+              }{% unless forloop.last %},{% endunless %}
+            {% endfor %}
+            ]
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    </script>
   </variant-selects>
 {%- endunless -%}

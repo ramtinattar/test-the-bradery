@@ -221,10 +221,19 @@
             endcapture
             assign media_index = media_index | plus: 1
           -%}
+
+          {% assign connected_variant_id = '' %}
+          {% for _variant in product.variants %}
+            {% if _variant.featured_media and _variant.featured_media.id == featured_media.id %}
+              {% assign connected_variant_id = connected_variant_id | append: _variant.id | append: ',' %}
+            {% endif %}
+          {% endfor %}
+          {% assign connected_variant_id = connected_variant_id | strip | remove_last: ',' %}
           <li
             id="Slide-Thumbnails-{{ section.id }}-0"
             class="thumbnail-list__item slider__slide{% if section.settings.hide_variants and variant_images contains featured_media.src %} thumbnail-list_item--variant{% endif %}"
             data-target="{{ section.id }}-{{ featured_media.id }}"
+            data-variant-id="{{ connected_variant_id }}"
             data-media-position="{{ media_index }}"
           >
             {%- capture thumbnail_id -%}
@@ -265,10 +274,18 @@
               endcapture
               assign media_index = media_index | plus: 1
             -%}
+            {% assign connected_variant_id = '' %}
+            {% for _variant in product.variants %}
+              {% if _variant.featured_media and _variant.featured_media.id == media.id %}
+                {% assign connected_variant_id = connected_variant_id | append: _variant.id | append: ',' %}
+              {% endif %}
+            {% endfor %}
+            {% assign connected_variant_id = connected_variant_id | strip | remove_last: ',' %}
             <li
               id="Slide-Thumbnails-{{ section.id }}-{{ forloop.index }}"
               class="thumbnail-list__item slider__slide{% if section.settings.hide_variants and variant_images contains media.src %} thumbnail-list_item--variant{% endif %}"
               data-target="{{ section.id }}-{{ media.id }}"
+              data-variant-id="{{ connected_variant_id }}"
               data-media-position="{{ media_index }}"
             >
               {%- if media.media_type == 'model' -%}
